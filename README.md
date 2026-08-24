@@ -1,14 +1,14 @@
 # ask-sharran-srivatsaa-lite
 
-A Claude Code agent and skill that answers a question the way [Sharran Srivatsaa](https://www.youtube.com/@sharran) would, grounded exclusively in his hosted 2026 knowledge base (YouTube videos and X posts) with per-claim citations to the exact source, never from the model's training data.
+A Claude Code agent and skill that answers a question the way [Sharran Srivatsaa](https://www.youtube.com/@sharran) would, grounded exclusively in his hosted 2026 knowledge base (YouTube videos and Shorts, his podcast, his Substack newsletter, and X posts) with per-claim citations to the exact source, never from the model's training data.
 
 Lite means paywalled sources are excluded from the corpus. For Sharran, that exclusion is currently empty: nothing in his source library is flagged paywalled.
 
 ## Corpus
 
-The `sharran-srivatsaa-lite` namespace covers two source types: 14 YouTube videos (capture manifest 2026-08-04) and 20 monthly archives of his X posts, together weighted toward personal finance and investing. The X post archives are the larger share by volume (about three-quarters of the namespace's passages). No newsletters, no podcasts he guested on, no courses, no books. A question that depends on any of those is out of corpus, and the agent says so plainly instead of guessing.
+The `sharran-srivatsaa-lite` namespace covers five source groups, measured from the 2026-08-24 send ledger (4,184 records total): his long-form YouTube videos and Shorts (2,192 records), his podcast archive (1,573 records across 321 episode syntheses plus their burst passages and Q&A pairs), his Substack newsletter (274 records), 20 monthly archives of his X posts (116 records), and 29 records routed in from multi-speaker episodes he appeared on. No courses, no books. A question that depends on those is out of corpus, and the agent says so plainly instead of guessing.
 
-Measured 2026-08-22 (Pinecone `describe_index_stats` on index `expert-kb`): the `sharran-srivatsaa-lite` namespace holds 158 vectors.
+Measured 2026-08-24 (Pinecone `describe_index_stats` on index `expert-kb`): the `sharran-srivatsaa-lite` namespace holds 4,218 vectors: the 4,184 current corpus records plus 34 legacy vectors left over from the earlier partial send, scheduled for removal.
 
 ## Lite exclusions
 
@@ -44,12 +44,12 @@ The `principles/` folder holds `first_principles.md` (Sharran's distilled first 
 
 ## Scope caveats
 
-- The corpus is small and narrow: 14 YouTube videos (capture manifest 2026-08-04) plus 20 monthly archives of X posts, weighted toward personal finance and investing. A question outside that is out of corpus.
+- The corpus is bounded to four public source types: YouTube videos and Shorts, his podcast, his Substack newsletter, and X post archives (plus segments routed in from multi-speaker episodes he appeared on). A question outside those is out of corpus.
 - Absence of evidence means the corpus is silent on the topic, never that Sharran disagrees. The agent is instructed to say "the corpus does not cover this" rather than guess.
 - The endpoint is read-only and rate-limited: 30 requests per minute per Internet Protocol (IP) address, plus a weekly quota of 100 queries per IP address.
 
 ## Status
 
-On 2026-08-22, a direct query against the search endpoint returned HTTP 200 with 3 hits from namespace `sharran-srivatsaa-lite`, confirming the namespace is live and served by the Worker. That namespace already carries its two source types in full, 158 vectors total: 116 from the X post archives and 42 from the 14 YouTube videos. A larger re-upsert of Sharran's expanded source library, his podcast (323 episodes), his Substack, 1,131 YouTube Shorts, and the remaining long-form synthesis, is captured in the private build workspace but not yet upserted, held behind a pending content review. When the re-upsert lands, this bundle's corpus description and vector count will update to match.
+On 2026-08-22, a direct query against the search endpoint returned HTTP 200 with 3 hits from namespace `sharran-srivatsaa-lite`, confirming the namespace is live and served by the Worker. On 2026-08-24 the full corpus re-upsert landed: 4,184 records sent in delta mode (send ledger, 2026-08-24), replacing the earlier 158-vector partial send. The per-source record counts are in the Corpus section above.
 
 This is an unofficial fan/study project; answers are an analyst's channeling of Sharran Srivatsaa's published positions, not Sharran himself.
