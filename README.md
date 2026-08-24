@@ -8,7 +8,7 @@ Lite means paywalled sources are excluded from the corpus. For Sharran, that exc
 
 The `sharran-srivatsaa-lite` namespace covers five source groups, measured from the 2026-08-24 send ledger (4,184 records total): his long-form YouTube videos and Shorts (2,192 records), his podcast archive (1,573 records across 321 episode syntheses plus their burst passages and Q&A pairs), his Substack newsletter (274 records), 20 monthly archives of his X posts (116 records), and 29 records routed in from multi-speaker episodes he appeared on. No courses, no books. A question that depends on those is out of corpus, and the agent says so plainly instead of guessing.
 
-Measured 2026-08-24 (Pinecone `describe_index_stats` on index `expert-kb`): the `sharran-srivatsaa-lite` namespace holds 4,218 vectors: the 4,184 current corpus records plus 34 legacy vectors left over from the earlier partial send, scheduled for removal.
+Measured 2026-08-24 (Pinecone `describe_index_stats` on index `expert-kb`): the `sharran-srivatsaa-lite` namespace holds exactly 4,184 vectors, one per current corpus record. The 34 legacy vectors left over from the earlier partial send were removed the same day, so the live count now matches the send ledger exactly.
 
 ## Lite exclusions
 
@@ -50,6 +50,6 @@ The `principles/` folder holds `first_principles.md` (Sharran's distilled first 
 
 ## Status
 
-On 2026-08-22, a direct query against the search endpoint returned HTTP 200 with 3 hits from namespace `sharran-srivatsaa-lite`, confirming the namespace is live and served by the Worker. On 2026-08-24 the full corpus re-upsert landed: 4,184 records sent in delta mode (send ledger, 2026-08-24), replacing the earlier 158-vector partial send. The per-source record counts are in the Corpus section above.
+On 2026-08-22, a direct query against the search endpoint returned HTTP 200 with 3 hits from namespace `sharran-srivatsaa-lite`, confirming the namespace is live and served by the Worker. On 2026-08-24 the full corpus re-upsert landed: 4,184 records sent in delta mode (send ledger, 2026-08-24), replacing the earlier 158-vector partial send, and the 34 leftover legacy vectors were removed the same day, bringing the namespace to an exact one-vector-per-record match with the ledger. The per-source record counts are in the Corpus section above.
 
 This is an unofficial fan/study project; answers are an analyst's channeling of Sharran Srivatsaa's published positions, not Sharran himself.
